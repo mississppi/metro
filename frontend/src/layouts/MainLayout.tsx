@@ -42,7 +42,11 @@ const MainLayout: React.FC= () => {
     return (
         <div className="flex">
             <div className="w-1/4 p-4">  {/* 左カラム */}
-                <PostList posts={posts} onPostClick={selectPost}/>
+                <PostList 
+                    posts={posts} 
+                    onPostClick={selectPost}
+                    selectedPostId={selectedPostId}
+                />
             </div>
             <div className="w-3/4 p-4">  {/* 右カラム */}
             </div>
