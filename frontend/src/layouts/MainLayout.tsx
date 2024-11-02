@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/Postlist';
+import PostDetail from '../components/PostDetail';
 
 // interface MainLayoutProps {
 //     children?: ReactNode;
@@ -8,20 +9,21 @@ import PostList from '../components/Postlist';
 interface Post {
     id: number;
     title: string;
+    content: string;
 }
 
 const MainLayout: React.FC= () => {
-    const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+    const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
-    const selectPost = (id: number) => {
-        setSelectedPostId(id);
-        console.log("call parent", id)
+    const handlePostClick = (id: number) => {
+        const post = posts.find(p => p.id === id)
+        setSelectedPost(post || null);
     }
 
     const [posts, setPosts] = useState<Post[]>([
-        { id: 1, title: 'Sample Post 1' },
-        { id: 2, title: 'Sample Post 2' },
-        { id: 3, title: 'Sample Post 3' },
+        { id: 1, title: 'Post 1', content: 'Content for post 1.' },
+        { id: 2, title: 'Post 2', content: 'Content for post 2.' },
+        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
     ]);
 
     // useEffect(() => {
@@ -44,11 +46,17 @@ const MainLayout: React.FC= () => {
             <div className="w-1/4 p-4">  {/* 左カラム */}
                 <PostList 
                     posts={posts} 
-                    onPostClick={selectPost}
-                    selectedPostId={selectedPostId}
+                    onPostClick={handlePostClick}
+                    selectedPostId={selectedPost?.id || null}
                 />
             </div>
             <div className="w-3/4 p-4">  {/* 右カラム */}
+                {selectedPost && (
+                    <PostDetail 
+                        title={selectedPost.title}
+                        content={selectedPost.content}
+                    />
+                )}
             </div>
         </div>
     );

@@ -9,7 +9,7 @@ const PostList = ({ posts, onPostClick, selectedPostId }:
     { 
         posts: Post[], 
         onPostClick: (id: number) => void,
-        selectedPostId: number,
+        selectedPostId: number | null,
     }
 ) => {
 
