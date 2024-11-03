@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import PostList from '../components/Postlist';
+import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 

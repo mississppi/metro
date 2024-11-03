@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const PostTitle = ({ title }:{
     title:string
 }) => {
     // 初期値としてpropsのcontentを設定
     const [editableTitle, setEditableTitle] = useState(title);
+
+    useEffect(() => {
+        setEditableTitle(title);
+    }, [title]);
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditableTitle(e.target.value);
