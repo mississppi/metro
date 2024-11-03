@@ -4,19 +4,27 @@ import PostTitle from './PostTitle';
 import PostContent from './PostContent';
 
 
-const PostDetail = ({title, content}:
+const PostDetail = ({title, content,onTitleChange,onContentChange}:
     {
         title: string;
-        content: string
+        content: string;
+        onTitleChange: (newTitle: string) => void;
+        onContentChange: (newContent: string) => void;
     }
 ) => {
     return (
         <div className="flex flex-col h-full">
             <div className="flex-grow-0 flex-shrink-0 bg-gray-100 p-4" style={{ flex: '2' }}>
-                <PostTitle title={title}/>
+                <PostTitle 
+                    title={title}
+                    onTitleChange={onTitleChange}
+                />
             </div>
             <div className="flex-grow bg-white p-4" style={{ flex: '8' }}>
-                <PostContent content={content}/>
+                <PostContent 
+                    content={content}
+                    onContentChange={onContentChange}
+                />
             </div>
         </div>
     );

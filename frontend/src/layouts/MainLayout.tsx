@@ -15,10 +15,12 @@ interface Post {
 
 const MainLayout: React.FC= () => {
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+    const [post, setPost] = useState({ title: 'Initial Title', content: 'Initial Content' });
 
     // コールバック関数を定義
     const handleSave = () => {
         console.log("メモを保存しました！");
+        console.log(selectedPost);
         // 保存の処理をここに記述
     };
 
@@ -58,6 +60,16 @@ const MainLayout: React.FC= () => {
     //     fetchPosts();
     // }, []);
 
+    const updateTitle = (newTitle: string) => {
+        console.log("updateTitle!!")
+        console.log(newTitle);
+        setSelectedPost((prevPost) => prevPost? { ...prevPost, title: newTitle } : null);
+    };
+
+    const updateContent = (newContent: string) => {
+        setSelectedPost((prevPost) => prevPost? { ...prevPost, content: newContent } : null);
+    };
+
     useKeyboardShortcuts(handleSave, handleNewNote, handleSearch);
     return (
         <div className="flex">
@@ -73,6 +85,8 @@ const MainLayout: React.FC= () => {
                     <PostDetail 
                         title={selectedPost.title}
                         content={selectedPost.content}
+                        onTitleChange={updateTitle}
+                        onContentChange={updateContent}
                     />
                 )}
             </div>

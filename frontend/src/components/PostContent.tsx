@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const PostContent = ({ content }: {
+const PostContent = ({ content, onContentChange }: {
     content: string;
+    onContentChange: (newContent: string) => void
 }) => {
     // 初期値としてpropsのcontentを設定
     const [editableContent, setEditableContent] = useState(content);
@@ -11,7 +12,9 @@ const PostContent = ({ content }: {
     }, [content]);
 
     const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setEditableContent(e.target.value)
+        const newContent = e.target.value;
+        setEditableContent(newContent)
+        onContentChange(newContent)
     }
     return (
         <div className="text-base">

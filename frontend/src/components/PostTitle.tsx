@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const PostTitle = ({ title }:{
-    title:string
+const PostTitle = ({ title, onTitleChange}:{
+    title:string;
+    onTitleChange: (newTitle: string) => void;
 }) => {
     // 初期値としてpropsのcontentを設定
     const [editableTitle, setEditableTitle] = useState(title);
@@ -11,7 +12,9 @@ const PostTitle = ({ title }:{
     }, [title]);
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEditableTitle(e.target.value);
+        const newTitle = e.target.value;
+        setEditableTitle(newTitle);
+        onTitleChange(newTitle);
     }
     return (
         <input 
