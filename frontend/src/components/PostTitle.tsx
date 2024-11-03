@@ -21,7 +21,7 @@ const PostTitle = ({ title, onTitleChange}:{
             type="text"
             value={editableTitle}
             onChange={handleTitleChange}
-            className="text-2xl font-bold border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none"
+            className="text-2xl font-bold border-b-2 focus:outline-none"
         />
     );
 };

@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        darkBg: '#121212',    // 背景色をダークグレーに
+        lightText: '#E0E0E0',  // テキスト色を明るいグレーに
+      },
+      fontFamily: {
+        sans: ['"Noto Sans JP"', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }

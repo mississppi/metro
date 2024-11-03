@@ -2,10 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/NotoSansJP-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/NotoSansJP-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* 基本のbodyスタイル */
+
 body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9fafb; /* 優しいグレーの背景色 */
+  background-color: #181818;
+  color: #D3D3D3;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #E0E0E0;
+}
+
+p {
+  color: #A0A0A0;
+}
+
+a {
+  color: #3A9AD9;
+}
+
+a:hover {
+  color: #66C2FF;
+}
+
+button {
+  background-color: #3A9AD9;
+  color: #121212;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #66C2FF;
+}
+
+.border {
+  border-top: 1px solid #2E2E2E;
 }

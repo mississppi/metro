@@ -19,9 +19,10 @@ const PostList = ({ posts, onPostClick, selectedPostId }:
                 {posts.map(post => (
                     <li 
                         key={post.id} 
-                        className={`flex justify-between items-center p-2 border-b cursor-pointer ${
-                            selectedPostId === post.id ? 'bg-gray-200' : ''
-                        }`}
+                        className="flex justify-between items-center p-2 cursor-pointer"
+                        style={{
+                            backgroundColor: selectedPostId === post.id ? '#4A90E2' : 'transparent'
+                        }}
                         onClick={() => onPostClick(post.id)}
                     >
                         {post.title}
