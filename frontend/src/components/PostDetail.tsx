@@ -14,13 +14,13 @@ const PostDetail = ({title, content,onTitleChange,onContentChange}:
 ) => {
     return (
         <div className="flex flex-col h-full">
-            <div className="flex-grow-0 flex-shrink-0 p-4" style={{ flex: '2' }}>
+            <div className="flex-grow-0 h-full flex-shrink-0 p-4" style={{ flex: '2' }}>
                 <PostTitle 
                     title={title}
                     onTitleChange={onTitleChange}
                 />
             </div>
-            <div className="flex-grow bg-white p-4" style={{ flex: '8' }}>
+            <div className="flex-grow bg-white p-4 h-full" style={{ flex: '8' }}>
                 <PostContent 
                     content={content}
                     onContentChange={onContentChange}

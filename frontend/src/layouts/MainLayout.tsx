@@ -43,6 +43,11 @@ const MainLayout: React.FC= () => {
         { id: 1, title: 'Post 1', content: 'Content for post 1.' },
         { id: 2, title: 'Post 2', content: 'Content for post 2.' },
         { id: 3, title: 'Post 3', content: 'Content for post 3.' },
+        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
+        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
+        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
+        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
+        { id: 9, title: 'Post 3', content: 'Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.' },
     ]);
 
     // useEffect(() => {
@@ -73,14 +78,14 @@ const MainLayout: React.FC= () => {
     useKeyboardShortcuts(handleSave, handleNewNote, handleSearch);
     return (
         <div className="flex">
-            <div className="w-1/4 p-4">  {/* 左カラム */}
+            <div className="w-1/4 p-4 h-full">  {/* 左カラム */}
                 <PostList 
                     posts={posts} 
                     onPostClick={handlePostClick}
                     selectedPostId={selectedPost?.id || null}
                 />
             </div>
-            <div className="w-3/4 p-4">  {/* 右カラム */}
+            <div className="w-3/4 p-4 h-full">  {/* 右カラム */}
                 {selectedPost && (
                     <PostDetail 
                         title={selectedPost.title}

@@ -21,7 +21,7 @@ const PostContent = ({ content, onContentChange }: {
             <textarea 
                 value={editableContent}
                 onChange={handleContentChange}
-                className="w-full h-40 p-2 border rounded"
+                className="w-full h-[80vh] p-2  bg-[#383838] text-white p-2 rounded"
                 placeholder='ここにメモの内容'
             />
         </div>
