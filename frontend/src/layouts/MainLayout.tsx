@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/Postlist';
 import PostDetail from '../components/PostDetail';
+import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 
 // interface MainLayoutProps {
 //     children?: ReactNode;
@@ -14,6 +15,22 @@ interface Post {
 
 const MainLayout: React.FC= () => {
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+
+    // コールバック関数を定義
+    const handleSave = () => {
+        console.log("メモを保存しました！");
+        // 保存の処理をここに記述
+    };
+
+    const handleNewNote = () => {
+        console.log("新規メモを作成しました！");
+        // 新規メモの作成処理をここに記述
+    };
+
+    const handleSearch = () => {
+        console.log("メモを検索しました！");
+        // 検索処理をここに記述
+    };
 
     const handlePostClick = (id: number) => {
         const post = posts.find(p => p.id === id)
@@ -41,6 +58,7 @@ const MainLayout: React.FC= () => {
     //     fetchPosts();
     // }, []);
 
+    useKeyboardShortcuts(handleSave, handleNewNote, handleSearch);
     return (
         <div className="flex">
             <div className="w-1/4 p-4">  {/* 左カラム */}
