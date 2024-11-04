@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 
 const useKeyboardShortcuts = (
     onSave: () => void,
-    onNewNote: () => void,
+    onNewPost: () => void,
     onSearch: () => void,
 ) => {
     useEffect(() => {
@@ -23,7 +23,7 @@ const useKeyboardShortcuts = (
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [onSave, onNewNote, onSearch])
+    }, [onSave, onNewPost, onSearch])
 }
 
 export default useKeyboardShortcuts

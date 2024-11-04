@@ -24,7 +24,7 @@ const MainLayout: React.FC= () => {
         // 保存の処理をここに記述
     };
 
-    const handleNewNote = () => {
+    const handleNewPost = () => {
         console.log("新規メモを作成しました！");
         // 新規メモの作成処理をここに記述
     };
@@ -43,11 +43,6 @@ const MainLayout: React.FC= () => {
         { id: 1, title: 'Post 1', content: 'Content for post 1.' },
         { id: 2, title: 'Post 2', content: 'Content for post 2.' },
         { id: 3, title: 'Post 3', content: 'Content for post 3.' },
-        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
-        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
-        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
-        { id: 3, title: 'Post 3', content: 'Content for post 3.' },
-        { id: 9, title: 'Post 3', content: 'Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.Content for post 3.' },
     ]);
 
     // useEffect(() => {
@@ -75,7 +70,7 @@ const MainLayout: React.FC= () => {
         setSelectedPost((prevPost) => prevPost? { ...prevPost, content: newContent } : null);
     };
 
-    useKeyboardShortcuts(handleSave, handleNewNote, handleSearch);
+    useKeyboardShortcuts(handleSave, handleNewPost, handleSearch);
     return (
         <div className="flex">
             <div className="w-1/4 p-4 h-full">  {/* 左カラム */}
