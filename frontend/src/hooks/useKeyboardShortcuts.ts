@@ -13,6 +13,17 @@ const useKeyboardShortcuts = (
                         e.preventDefault();
                         onSave();
                         break;
+                    case 'c':
+                        e.preventDefault();
+                        // onSave();
+                        // onNewPost();
+                        break;
+                    case 'n':
+                        if (e.shiftKey) { // cmd + shift + n の場合
+                            e.preventDefault();
+                            onNewPost(); // 新規作成処理
+                        }
+                        break;
                     default:
                         break;
                 }

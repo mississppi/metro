@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
+import { createNewPost } from '../api/postService';
 
 // interface MainLayoutProps {
 //     children?: ReactNode;
@@ -26,6 +27,11 @@ const MainLayout: React.FC= () => {
 
     const handleNewPost = () => {
         console.log("新規メモを作成しました！");
+        const postData = {
+            title: '新しい投稿',
+            content: 'ここに投稿の内容を入力します。',
+        };
+        createNewPost(postData);
         // 新規メモの作成処理をここに記述
     };
 
@@ -85,6 +91,7 @@ const MainLayout: React.FC= () => {
                     <PostDetail 
                         title={selectedPost.title}
                         content={selectedPost.content}
+                        onNewPost={handleNewPost}
                         onTitleChange={updateTitle}
                         onContentChange={updateContent}
                     />
