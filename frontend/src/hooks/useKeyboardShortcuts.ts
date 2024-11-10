@@ -15,7 +15,6 @@ const useKeyboardShortcuts = (
                         break;
                     case 'c':
                         const activeElement = document.activeElement as HTMLElement;
-
                         if(isTextArea(activeElement)){
                             const textarea = activeElement as HTMLTextAreaElement;
                             if (!isTextSelected(textarea)) {
@@ -23,8 +22,6 @@ const useKeyboardShortcuts = (
                                 copyLine(textarea);
                             }
                         }
-                        // onSave();
-                        // onNewPost();
                         break;
                     case 'n':
                         if (e.shiftKey) { // cmd + shift + n の場合
