@@ -12,24 +12,26 @@ const PostList = ({ posts, onPostClick, selectedPostId }:
         selectedPostId: number | null,
     }
 ) => {
+    const [contextMenuPosition, setContextMenuPosition] = useState(null);
 
+    
     return (
-        <div>
-            <ul>
-                {posts.map(post => (
-                    <li 
-                        key={post.id} 
-                        className="flex h-full justify-between items-center p-2 cursor-pointer"
-                        style={{
-                            backgroundColor: selectedPostId === post.id ? '#4A90E2' : 'transparent'
-                        }}
-                        onClick={() => onPostClick(post.id)}
-                    >
-                        {post.title}
-                    </li>
-                ))}
-            </ul>
-        </div>
+            <div>
+                <ul>
+                    {posts.map(post => (
+                        <li 
+                            key={post.id} 
+                            className="flex h-full justify-between items-center p-2 cursor-pointer"
+                            style={{
+                                backgroundColor: selectedPostId === post.id ? '#4A90E2' : 'transparent'
+                            }}
+                            onClick={() => onPostClick(post.id)}
+                        >
+                            {post.title}
+                        </li>
+                    ))}
+                </ul>
+            </div>
     )
 }
 
