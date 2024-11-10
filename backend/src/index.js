@@ -39,6 +39,19 @@ app.post('/newpost', (req, res) => {
     });
 })
 
+// 全投稿の取得
+app.get('/posts', (req, res) => {
+    const query = `SELECT * FROM posts ORDER BY created_at DESC`;
+
+    db.all(query, (err, rows) => {
+        if (err) {
+            console.error("Error retrieving posts:", err.message);
+            return res.status(500).send({ message: 'Failed to retrieve posts' });
+        }
+        res.status(200).json(rows);
+    });
+});
+
 // サーバー起動
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

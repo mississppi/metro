@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
-import { createNewPost } from '../api/postService';
+import { createNewPost, getPosts } from '../api/postService';
 
 // interface MainLayoutProps {
 //     children?: ReactNode;
@@ -51,20 +51,19 @@ const MainLayout: React.FC= () => {
         { id: 3, title: 'Post 3', content: 'Content for post 3.' },
     ]);
 
-    // useEffect(() => {
-    //     const fetchPosts = async () => {
-    //     try {
-    //         // APIからのデータ取得
-    //         const response = await fetch('/api/posts'); // 実際のAPIエンドポイントに変更
-    //         const data = await response.json();
-    //         setPosts(data); // APIデータで上書き
-    //     } catch (error) {
-    //         console.error('Failed to fetch posts:', error);
-    //     }
-    //     };
+    useEffect(() => {
+        const fetchPosts = async () => {
+        try {
+            // APIからのデータ取得
+            const response = await getPosts();
+            setPosts(response)
+        } catch (error) {
+            console.error('Failed to fetch posts:', error);
+        }
+        };
     
-    //     fetchPosts();
-    // }, []);
+        fetchPosts();
+    }, []);
 
     const updateTitle = (newTitle: string) => {
         console.log("updateTitle!!")
