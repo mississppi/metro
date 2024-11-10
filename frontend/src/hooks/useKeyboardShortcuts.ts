@@ -13,6 +13,8 @@ const useKeyboardShortcuts = (
                         e.preventDefault();
                         onSave();
                         break;
+
+                    //1行コピー機能
                     case 'c':
                         const activeElement = document.activeElement as HTMLElement;
                         if(isTextArea(activeElement)){
