@@ -6,7 +6,7 @@ interface Post {
 
 // 新しい投稿を作成する関数
 const createNewPost = async (postData: Post): Promise<void> => {
-    console.log("from front new p")
+    console.log("newpost fromservice")
     try {
         const response = await fetch('http://localhost:3000/newpost', {
             method: 'POST',
@@ -16,12 +16,14 @@ const createNewPost = async (postData: Post): Promise<void> => {
             body: JSON.stringify(postData),
         });
 
+        console.log('return frontend');
+        
         if (!response.ok) {
             throw new Error('Failed to create post');
         }
 
         const data = await response.json();
-        console.log(data.message);
+        console.log(data);
     } catch (error) {
         console.error('Error creating post:', error);
     }

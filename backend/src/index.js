@@ -19,8 +19,24 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/newpost', (req, res) => {
-    console.log('create!');
-    res.status(201).send({message: 'Post crated!'});
+    console.log('call from service!');
+
+    const { title, content } = req.body;
+
+    if (!title || !content) {
+        return res.status(400).send({ message: 'Title and content are required' });
+    }
+
+    const query = `INSERT INTO posts (title, content) VALUES (?, ?)`;
+
+    db.run(query, [title, content], function(err) {
+        if (err) {
+            console.error("Error creating post:", err.message);
+            return res.status(500).send({ message: 'Failed to create post' });
+        }
+        console.log('Post created with ID:', this.lastID);
+        res.status(201).send({ message: 'Post created!', postId: this.lastID });
+    });
 })
 
 // サーバー起動
