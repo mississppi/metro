@@ -1,9 +1,13 @@
 // src/index.js
 const express = require('express');
 const cors = require('cors');
+const { db, init } = require('./db'); // initメソッドをインポート
 
 const app = express();
 const PORT = 3000;
+
+// データベースの初期化を呼び出し
+init();
 
 // ミドルウェアの設定
 app.use(cors());
