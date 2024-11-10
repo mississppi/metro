@@ -43,16 +43,6 @@ const useKeyboardShortcuts = (
         }
 
         const handleTextarea = (textarea: HTMLTextAreaElement) => {
-            console.log("handleが呼ばれました")
-        
-            // キャレットの現在位置を取得
-            // const caretPosition = textarea.selectionStart;
-            // console.log("キャレット位置:", caretPosition);
-
-            // // テキストエリアの末尾のキャレット位置を取得
-            // const endPosition = textarea.value.length;
-            // console.log("キャレットの末尾位置:", endPosition);
-
             const startOfLinePosition = findPreviousNewlinePosition(textarea);
             const endOfLinePosition = findNextNewlinePosition(textarea);
             
@@ -63,7 +53,6 @@ const useKeyboardShortcuts = (
             navigator.clipboard.writeText(selectedText)
                 .then(() => console.log('copied', selectedText))
                 .catch(err => console.log('failed', err))
-
         }
 
         //キャレットが選択状態か判定する
