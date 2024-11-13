@@ -3,10 +3,11 @@ interface Post {
     title: string;
     content: string;
 }
+const API_URL = 'http://localhost:3000';
 
 const createNewPost = async (postData: Post): Promise<void> => {
     try {
-        const response = await fetch('http://localhost:3000/posts', {
+        const response = await fetch(`${API_URL}/posts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +25,6 @@ const createNewPost = async (postData: Post): Promise<void> => {
     }
 };
 
-const API_URL = 'http://localhost:3000';
 
 const getPosts = async () => {
     try {
