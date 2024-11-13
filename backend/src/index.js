@@ -33,8 +33,9 @@ app.post('/newpost', (req, res) => {
     });
 })
 
-app.put('/update', async (req, res) => {
-    const { id, title, content } = req.body;
+app.put('/posts/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
     try {
         const result = await db.run(
             `UPDATE posts SET title = ?, content = ? WHERE id = ?`,

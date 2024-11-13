@@ -56,12 +56,12 @@ const getPostById = async (postId: number) => {
 
 const updatePost = async (postId: number, updatedData: { title?: string; content?: string }) => {
     try {
-        const response = await fetch(`${API_URL}/update`, {
+        const response = await fetch(`${API_URL}/posts/${postId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: postId, ...updatedData }),
+            body: JSON.stringify(updatedData),
         });
         if (!response.ok) {
             throw new Error('Failed to update post');
