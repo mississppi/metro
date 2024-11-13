@@ -52,7 +52,6 @@ app.put('/posts/:id', async (req, res) => {
     }
 });
 
-// 全投稿の取得
 app.get('/posts', (req, res) => {
     const query = `SELECT * FROM posts ORDER BY created_at ASC`;
     db.all(query, (err, rows) => {
@@ -64,7 +63,6 @@ app.get('/posts', (req, res) => {
     });
 });
 
-// 1件の投稿を取得
 app.get('/posts/:id', (req, res) => {
     const postId = req.params.id;
     const query = `SELECT * FROM posts WHERE id = ?`;
