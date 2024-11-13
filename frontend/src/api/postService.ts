@@ -6,7 +6,7 @@ interface Post {
 
 const createNewPost = async (postData: Post): Promise<void> => {
     try {
-        const response = await fetch('http://localhost:3000/newpost', {
+        const response = await fetch('http://localhost:3000/posts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

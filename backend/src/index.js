@@ -18,7 +18,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello, World!');
 });
 
-app.post('/newpost', (req, res) => {
+app.post('/posts', (req, res) => {
     const { title, content } = req.body;
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });
