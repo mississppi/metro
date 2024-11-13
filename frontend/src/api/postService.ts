@@ -4,9 +4,7 @@ interface Post {
     content: string;
 }
 
-// 新しい投稿を作成する関数
 const createNewPost = async (postData: Post): Promise<void> => {
-    console.log("newpost fromservice")
     try {
         const response = await fetch('http://localhost:3000/newpost', {
             method: 'POST',
@@ -15,15 +13,12 @@ const createNewPost = async (postData: Post): Promise<void> => {
             },
             body: JSON.stringify(postData),
         });
-
-        console.log('return frontend');
-        
         if (!response.ok) {
             throw new Error('Failed to create post');
         }
 
         const data = await response.json();
-        console.log(data);
+        console.log(data); 
     } catch (error) {
         console.error('Error creating post:', error);
     }
@@ -31,9 +26,9 @@ const createNewPost = async (postData: Post): Promise<void> => {
 
 const API_URL = 'http://localhost:3000';
 
-export const getPosts = async () => {
+const getPosts = async () => {
     try {
-        const response = await fetch(`${API_URL}/posts`);
+        const response = await fetch(`${API_URL}/posts`);        
         if (!response.ok) {
             throw new Error('Failed to fetch posts');
         }
@@ -45,4 +40,38 @@ export const getPosts = async () => {
     }
 };
 
-export { createNewPost };
+const getPostById = async (postId: number) => {
+    try {
+        const response = await fetch(`${API_URL}/posts/${postId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch the post');
+        }
+        const post = await response.json();
+        return post;
+    } catch (error) {
+        console.error('Error fetching the post:', error);
+        throw error;
+    }
+};
+
+const updatePost = async (postId: number, updatedData: { title?: string; content?: string }) => {
+    try {
+        const response = await fetch(`${API_URL}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: postId, ...updatedData }),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update post');
+        }
+        const post = await getPostById(postId);
+        return post;
+    } catch (error) {
+        console.error('Error updating post:', error);
+        throw error;
+    }
+};
+
+export { createNewPost, getPosts, getPostById, updatePost };

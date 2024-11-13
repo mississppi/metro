@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 
 const useKeyboardShortcuts = (
-    onSave: () => void,
     onNewPost: () => void,
+    onUpdate: () => void,
     onSearch: () => void,
 ) => {
     useEffect(() => {
@@ -11,7 +11,7 @@ const useKeyboardShortcuts = (
                 switch(e.key) {
                     case 's':
                         e.preventDefault();
-                        onSave();
+                        onUpdate();
                         break;
 
                     //1行コピー機能
@@ -36,6 +36,8 @@ const useKeyboardShortcuts = (
                 }
             }
         };
+
+        
 
         const copyLine = (textarea: HTMLTextAreaElement) => {
             handleTextarea(textarea);
@@ -88,7 +90,7 @@ const useKeyboardShortcuts = (
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [onSave, onNewPost, onSearch])
+    }, [onNewPost, onUpdate, onSearch])
 }
 
 export default useKeyboardShortcuts

@@ -19,36 +19,63 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/newpost', (req, res) => {
-    console.log('call from service!');
-
     const { title, content } = req.body;
-
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });
     }
-
     const query = `INSERT INTO posts (title, content) VALUES (?, ?)`;
-
     db.run(query, [title, content], function(err) {
         if (err) {
             console.error("Error creating post:", err.message);
             return res.status(500).send({ message: 'Failed to create post' });
         }
-        console.log('Post created with ID:', this.lastID);
         res.status(201).send({ message: 'Post created!', postId: this.lastID });
     });
 })
 
+app.put('/update', async (req, res) => {
+    const { id, title, content } = req.body;
+    try {
+        const result = await db.run(
+            `UPDATE posts SET title = ?, content = ? WHERE id = ?`,
+            [title, content, id]
+        );
+        if(result.changes === 0){
+            console.log('No rows updated.');
+            return; 
+        }
+        res.json({ message: 'Post updated successfully' });
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).json({ message: 'Failed to update post' });
+    }
+});
+
 // 全投稿の取得
 app.get('/posts', (req, res) => {
-    const query = `SELECT * FROM posts ORDER BY created_at DESC`;
-
+    const query = `SELECT * FROM posts ORDER BY created_at ASC`;
     db.all(query, (err, rows) => {
         if (err) {
             console.error("Error retrieving posts:", err.message);
             return res.status(500).send({ message: 'Failed to retrieve posts' });
         }
         res.status(200).json(rows);
+    });
+});
+
+// 1件の投稿を取得
+app.get('/posts/:id', (req, res) => {
+    const postId = req.params.id;
+    const query = `SELECT * FROM posts WHERE id = ?`;
+    db.get(query, [postId], (err, row) => {
+        if (err) {
+            console.error("Error retrieving post:", err.message);
+            return res.status(500).send({ message: 'Failed to retrieve post' });
+        }
+        if (!row) {
+            return res.status(404).send({ message: 'Post not found' });
+        }
+        res.status(200).json(row);
     });
 });
 
