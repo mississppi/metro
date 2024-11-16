@@ -65,6 +65,11 @@ const MainLayout: React.FC= () => {
         setSelectedPost(post || null);
     }
 
+    const handleDelete = (id: number) => {
+        console.log("delte start");
+        
+    }
+
     const updateTitle = (newTitle: string) => {
         setSelectedPost((prevPost) => prevPost? { ...prevPost, title: newTitle } : null);
     };
@@ -81,6 +86,7 @@ const MainLayout: React.FC= () => {
                     posts={posts} 
                     onPostClick={handlePostClick}
                     selectedPostId={selectedPost?.id || null}
+                    onDelete={handleDelete}
                 />
             </div>
             <div className="w-3/4 p-4 h-full">  {/* 右カラム */}

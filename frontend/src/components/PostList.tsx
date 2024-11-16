@@ -5,11 +5,12 @@ interface Post {
     title: string;
 }
 
-const PostList = ({ posts, onPostClick, selectedPostId }: 
+const PostList = ({ posts, onPostClick, selectedPostId, onDelete }: 
     { 
         posts: Post[], 
         onPostClick: (id: number) => void,
         selectedPostId: number | null,
+        onDelete: (id: number) => void,
     }
 ) => {
     const [contextMenuPosition, setContextMenuPosition] = useState(null);

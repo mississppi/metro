@@ -18,6 +18,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello, World!');
 });
 
+// todo 1件新規追加したらlistに反映させる
 app.post('/posts', (req, res) => {
     const { title, content } = req.body;
     if (!title || !content) {
