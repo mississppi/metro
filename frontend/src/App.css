@@ -3,3 +3,22 @@ body {
     color: #E0E0E0;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
+.scrollable {
+    background-color: #383838;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #383838;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: #383838;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
