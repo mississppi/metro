@@ -28,7 +28,7 @@ const MainLayout: React.FC= () => {
 
     const handleNewPost = async () => {
         const postData = {
-            title: '新しい投稿',
+            title: 'new post',
             content: 'ここに投稿の内容を入力します。',
         };
         createNewPost(postData);
@@ -80,8 +80,8 @@ const MainLayout: React.FC= () => {
 
     useKeyboardShortcuts(handleNewPost, handleUpdatePost, handleSearch);
     return (
-        <div className="flex">
-            <div className="w-1/4 p-4 h-full">  {/* 左カラム */}
+        <div className="flex h-screen">
+            <div className="w-1/4 p-4 h-full overflow-y-auto border-r">  {/* 左カラム */}
                 <PostList 
                     posts={posts} 
                     onPostClick={handlePostClick}
@@ -89,7 +89,7 @@ const MainLayout: React.FC= () => {
                     onDelete={handleDelete}
                 />
             </div>
-            <div className="w-3/4 p-4 h-full">  {/* 右カラム */}
+            <div className="w-3/4 p-4 h-full overflow-y-auto">  {/* 右カラム */}
                 {selectedPost && (
                     <PostDetail 
                         title={selectedPost.title}

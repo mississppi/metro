@@ -17,7 +17,12 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDelete }:
 
     
     return (
-            <div>
+            <div
+                style={{
+                    height: '100%',
+                    overflowY: 'auto',
+                }}
+            >
                 <ul>
                     {posts.map(post => (
                         <li 
