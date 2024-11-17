@@ -81,7 +81,8 @@ const MainLayout: React.FC= () => {
     useKeyboardShortcuts(handleNewPost, handleUpdatePost, handleSearch);
     return (
         <div className="flex h-screen">
-            <div className="scrollable w-1/4 p-4 h-full overflow-y-auto border-r">  {/* 左カラム */}
+            <div 
+                className="scrollable w-1/4 px-4 pt-4 pb-4 pr-0 h-full overflow-y-auto border-r border-gray-800">  {/* 左カラム */}
                 <PostList 
                     posts={posts} 
                     onPostClick={handlePostClick}
