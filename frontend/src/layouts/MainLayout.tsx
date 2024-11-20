@@ -41,6 +41,8 @@ const MainLayout: React.FC= () => {
         try {
             await deletePost(selectedPost.id);
             setPosts((prevPosts) => prevPosts.filter((post) => post.id !== selectedPost.id));
+
+            setSelectedPost({id: 0, title: '', content: ''})
         } catch (error) {
             console.error('Failed to delete post:', error);
             alert('投稿の削除中にエラーが発生しました。');
@@ -50,6 +52,10 @@ const MainLayout: React.FC= () => {
     const handleUpdatePost = async () => {
         if(!selectedPost) {
             console.error("No post selected for update");
+            return;
+        }
+        if(selectedPost.id === 0){
+            console.error("Post update skipped: id is 0");
             return;
         }
         try {

@@ -58,6 +58,11 @@ const getPostById = async (postId: number) => {
 };
 
 const updatePost = async (postId: number, updatedData: { title?: string; content?: string }) => {
+    // もしidが0の場合は更新しない（リセット後はidが0の可能性がある）
+    if (postId === 0) {
+        console.log('Post update skipped: id is 0');
+        return;  // 処理をスキップ
+    }
     try {
         const response = await fetch(`${API_URL}/posts/${postId}`, {
             method: 'PUT',
