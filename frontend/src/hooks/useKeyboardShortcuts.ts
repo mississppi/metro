@@ -17,6 +17,7 @@ const useKeyboardShortcuts = (
 
                     //1行コピー機能
                     case 'c':
+                        //テキストエリア内の押下か判定
                         const activeElement = document.activeElement as HTMLElement;
                         if(isTextArea(activeElement)){
                             const textarea = activeElement as HTMLTextAreaElement;
