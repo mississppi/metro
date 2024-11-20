@@ -20,6 +20,7 @@ app.get('/hello', (req, res) => {
 
 // todo 1件新規追加したらlistに反映させる
 app.post('/posts', (req, res) => {
+    console.log("back; posts")
     const { title, content } = req.body;
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });

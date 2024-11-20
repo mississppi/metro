@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-
-interface Post {
-    id: number;
-    title: string;
-}
+import {Post} from '../types/Post';
 
 const PostList = ({ posts, onPostClick, selectedPostId, onDelete }: 
     { 

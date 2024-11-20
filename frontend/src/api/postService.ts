@@ -1,11 +1,12 @@
-// 投稿のデータ型を定義
-interface Post {
-    title: string;
-    content: string;
-}
+import {Post} from '../types/Post';
+
 const API_URL = 'http://localhost:3000';
 
-const createNewPost = async (postData: Post): Promise<void> => {
+const createNewPost = async (): Promise<Post> => {
+    const postData = {
+        title: 'new',
+        content: 'oioioi',
+    }
     try {
         const response = await fetch(`${API_URL}/posts`, {
             method: 'POST',
@@ -19,9 +20,11 @@ const createNewPost = async (postData: Post): Promise<void> => {
         }
 
         const data = await response.json();
-        console.log(data); 
+        const post = await getPostById(data.postId);
+        return post;
     } catch (error) {
         console.error('Error creating post:', error);
+        throw error;
     }
 };
 

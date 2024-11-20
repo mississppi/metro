@@ -3,12 +3,7 @@ import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
 import { createNewPost, getPostById, getPosts, updatePost } from '../api/postService';
-
-interface Post {
-    id: number;
-    title: string;
-    content: string;
-}
+import { Post } from '../types/Post';
 
 const MainLayout: React.FC= () => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -27,12 +22,23 @@ const MainLayout: React.FC= () => {
     }, []);
 
     const handleNewPost = async () => {
-        const postData = {
-            title: 'new post',
-            content: 'ここに投稿の内容を入力します。',
-        };
-        createNewPost(postData);
-        // 新規メモの作成処理をここに記述
+        console.log('newpost!!');
+        
+        try {
+            const createdPost = await createNewPost();
+            if (createdPost) {
+                setPosts((prevPosts) => [...prevPosts, createdPost]);
+            }
+            // setPosts((prevPosts) => {
+            //     if (!createdPost){
+            //         return prevPosts;
+            //     }
+            //     return [...prevPosts, createdPost]
+            // });
+        } catch(error) {
+            console.error('新規投稿の作成に失敗しました:', error);
+            alert('新規投稿の作成中にエラーが発生しました。もう一度お試しください。');
+        }
     };
 
     const handleUpdatePost = async () => {
