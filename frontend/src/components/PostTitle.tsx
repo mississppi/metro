@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const PostTitle = ({ title, onTitleChange, onNewPost}:{
+const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
     title:string;
     onTitleChange: (newTitle: string) => void;
     onNewPost: () => void;
+    onDeletePost: () => void;
 }) => {
     // 初期値としてpropsのcontentを設定
     const [editableTitle, setEditableTitle] = useState(title);
@@ -34,19 +35,19 @@ const PostTitle = ({ title, onTitleChange, onNewPost}:{
                         src="/icons/plus.svg" 
                         alt="新規追加" 
                         className="w-5 h-5" 
-                        />
+                    />
                 </button>
 
-                    {/* 削除ボタン */}
+                {/* 削除ボタン */}
                 <button 
-                    // onClick={onDelete}
+                    onClick={onDeletePost}
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none"
                     >
                     <img 
                         src="/icons/trash.svg" 
                         alt="削除" 
                         className="w-5 h-5" 
-                        />
+                    />
                 </button>
             </div>
         </div>

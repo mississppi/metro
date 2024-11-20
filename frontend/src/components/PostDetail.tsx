@@ -4,11 +4,12 @@ import PostTitle from './PostTitle';
 import PostContent from './PostContent';
 
 
-const PostDetail = ({title, content,onNewPost,onTitleChange,onContentChange}:
+const PostDetail = ({title, content,onNewPost,onDeletePost,onTitleChange,onContentChange}:
     {
         title: string;
         content: string;
         onNewPost: () => void;
+        onDeletePost: () => void;
         onTitleChange: (newTitle: string) => void;
         onContentChange: (newContent: string) => void;
     }
@@ -20,6 +21,7 @@ const PostDetail = ({title, content,onNewPost,onTitleChange,onContentChange}:
                     title={title}
                     onTitleChange={onTitleChange}
                     onNewPost={onNewPost}
+                    onDeletePost={onDeletePost}
                 />
             </div>
             <div className="flex-grow h-full" style={{ flex: '8' }}>

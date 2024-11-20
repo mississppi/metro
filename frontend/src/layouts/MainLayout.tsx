@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
-import { createNewPost, getPostById, getPosts, updatePost } from '../api/postService';
+import { createNewPost, getPostById, getPosts, updatePost, deletePost } from '../api/postService';
 import { Post } from '../types/Post';
 
 const MainLayout: React.FC= () => {
@@ -22,24 +22,30 @@ const MainLayout: React.FC= () => {
     }, []);
 
     const handleNewPost = async () => {
-        console.log('newpost!!');
-        
         try {
             const createdPost = await createNewPost();
             if (createdPost) {
                 setPosts((prevPosts) => [...prevPosts, createdPost]);
             }
-            // setPosts((prevPosts) => {
-            //     if (!createdPost){
-            //         return prevPosts;
-            //     }
-            //     return [...prevPosts, createdPost]
-            // });
         } catch(error) {
             console.error('新規投稿の作成に失敗しました:', error);
             alert('新規投稿の作成中にエラーが発生しました。もう一度お試しください。');
         }
     };
+
+    const handleDeletePost = async () => {
+        if(!selectedPost) {
+            console.error("No post selected for delete");
+            return;
+        }
+        try {
+            await deletePost(selectedPost.id);
+            setPosts((prevPosts) => prevPosts.filter((post) => post.id !== selectedPost.id));
+        } catch (error) {
+            console.error('Failed to delete post:', error);
+            alert('投稿の削除中にエラーが発生しました。');
+        }
+    }
 
     const handleUpdatePost = async () => {
         if(!selectedPost) {
@@ -102,6 +108,7 @@ const MainLayout: React.FC= () => {
                         title={selectedPost.title}
                         content={selectedPost.content}
                         onNewPost={handleNewPost}
+                        onDeletePost={handleDeletePost}
                         onTitleChange={updateTitle}
                         onContentChange={updateContent}
                     />

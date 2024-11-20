@@ -18,9 +18,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello, World!');
 });
 
-// todo 1件新規追加したらlistに反映させる
 app.post('/posts', (req, res) => {
-    console.log("back; posts")
     const { title, content } = req.body;
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });
@@ -79,6 +77,23 @@ app.get('/posts/:id', (req, res) => {
         res.status(200).json(row);
     });
 });
+
+app.delete('/posts/:id', (req, res) => {
+    const postId = req.params.id;
+    const query = `DELETE FROM posts WHERE id = ?`;
+    db.run(query, [postId], function (err) {
+        if (err) {
+            console.error("Error deleting post:", err.message);
+            return res.status(500).send({ message: 'Failed to delete post' });
+        }
+
+        if (this.changes === 0) {
+            return res.status(404).send({ message: 'Post not found' });
+        }
+
+        res.status(200).send({ message: 'Post deleted successfully' });
+    });
+})
 
 // サーバー起動
 app.listen(PORT, () => {

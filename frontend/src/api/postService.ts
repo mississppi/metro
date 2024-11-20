@@ -77,4 +77,23 @@ const updatePost = async (postId: number, updatedData: { title?: string; content
     }
 };
 
-export { createNewPost, getPosts, getPostById, updatePost };
+const deletePost = async (postId: number) => {
+    try {
+        const response = await fetch(`${API_URL}/posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({postId}),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete post');
+        }
+        return response.json();
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        throw error;
+    }
+}
+
+export { createNewPost, getPosts, getPostById, updatePost, deletePost };
