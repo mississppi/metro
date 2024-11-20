@@ -9,6 +9,7 @@ const useKeyboardShortcuts = (
         const handleKeyDown = (e: KeyboardEvent) => {
             if(e.metaKey) {
                 switch(e.key) {
+                    //保存
                     case 's':
                         e.preventDefault();
                         onUpdate();
@@ -25,11 +26,11 @@ const useKeyboardShortcuts = (
                             }
                         }
                         break;
+
+                    //新規作成
                     case 'n':
-                        if (e.shiftKey) { // cmd + shift + n の場合
-                            e.preventDefault();
-                            onNewPost(); // 新規作成処理
-                        }
+                        e.preventDefault();
+                        onNewPost();
                         break;
                     default:
                         break;
