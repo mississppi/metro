@@ -4,8 +4,8 @@ const API_URL = 'http://localhost:3000';
 
 const createNewPost = async (): Promise<Post> => {
     const postData = {
-        title: 'new',
-        content: 'oioioi',
+        title: 'new post',
+        content: ' ',
     }
     try {
         const response = await fetch(`${API_URL}/posts`, {
@@ -27,7 +27,6 @@ const createNewPost = async (): Promise<Post> => {
         throw error;
     }
 };
-
 
 const getPosts = async () => {
     try {
