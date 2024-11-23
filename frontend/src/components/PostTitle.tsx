@@ -37,18 +37,6 @@ const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
                         className="w-5 h-5" 
                     />
                 </button>
-
-                {/* 削除ボタン */}
-                <button 
-                    onClick={onDeletePost}
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none"
-                    >
-                    <img 
-                        src="/icons/trash.svg" 
-                        alt="削除" 
-                        className="w-5 h-5" 
-                    />
-                </button>
             </div>
         </div>
         
