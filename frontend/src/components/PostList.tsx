@@ -39,27 +39,26 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDelete }:
                         >
                             <span>{post.title}</span>
                             {selectedPostId === post.id && (
-                                
                                 <div className="relative">
                                     <button
                                         className="text-gray-600 hover:text-gray-800 px-2 py-1"
                                         onClick={() => toggleMenu(post.id)}
                                     >
-                                        &#x22EE; {/* 縦に3点リーダー */}
+                                        ･･ {/* 半角中点を2つ */}
                                     </button>
                                     {menuOpenId === post.id && (
-                                                <div className="absolute right-0 bg-white shadow-md border rounded-lg w-40">
-                                                    <ul>
-                                                        <li
-                                                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                                                            onClick={() => {
-                                                                setMenuOpenId(null);
-                                                            }}
-                                                        >
-                                                            delete
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                        <div className="absolute right-0 bg-white shadow-md border rounded-lg w-40">
+                                            <ul>
+                                                <li
+                                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
+                                                    onClick={() => {
+                                                        setMenuOpenId(null);
+                                                    }}
+                                                >
+                                                    delete
+                                                </li>
+                                            </ul>
+                                        </div>
                                     )}
                                 </div>
                             )}
