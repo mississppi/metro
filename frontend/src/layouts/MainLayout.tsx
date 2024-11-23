@@ -41,8 +41,8 @@ const MainLayout: React.FC= () => {
         try {
             await deletePost(selectedPost.id);
             setPosts((prevPosts) => prevPosts.filter((post) => post.id !== selectedPost.id));
-
-            setSelectedPost({id: 0, title: '', content: ''})
+            setSelectedPost(null)
+            // setSelectedPost({id: 0, title: '', content: ''})
         } catch (error) {
             console.error('Failed to delete post:', error);
             alert('投稿の削除中にエラーが発生しました。');
@@ -109,7 +109,7 @@ const MainLayout: React.FC= () => {
                 />
             </div>
             <div className="w-3/4 p-4 h-full overflow-y-auto">  {/* 右カラム */}
-                {selectedPost && (
+                {selectedPost !== null && (
                     <PostDetail 
                         title={selectedPost.title}
                         content={selectedPost.content}
