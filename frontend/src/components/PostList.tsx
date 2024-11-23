@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import {Post} from '../types/Post';
 
-const PostList = ({ posts, onPostClick, selectedPostId, onDelete }: 
+const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost }: 
     { 
         posts: Post[], 
         onPostClick: (id: number) => void,
         selectedPostId: number | null,
-        onDelete: (id: number) => void,
+        onDeletePost: () => void;
     }
 ) => {
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null);
-
     const toggleMenu = (id: number) => {
-        console.log('clicked');
-        console.log(id);
         setMenuOpenId(menuOpenId === id ? null : id);
     }
 
     const [contextMenuPosition, setContextMenuPosition] = useState(null);
 
-    
     return (
             <div
                 style={{
@@ -53,6 +49,7 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDelete }:
                                                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
                                                     onClick={() => {
                                                         setMenuOpenId(null);
+                                                        onDeletePost();
                                                     }}
                                                 >
                                                     delete
