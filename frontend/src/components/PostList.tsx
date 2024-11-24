@@ -29,15 +29,20 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost }:
                             key={post.id} 
                             className="flex h-full justify-between items-center p-2 cursor-pointer"
                             style={{
-                                backgroundColor: selectedPostId === post.id ? '#4A90E2' : 'transparent'
+                                backgroundColor: selectedPostId === post.id ? '#FFF0C8' : 'transparent'
                             }}
                             onClick={() => onPostClick(post.id)}
                         >
-                            <span>{post.title}</span>
+                            {post.title.length > 20 
+                                ? `${post.title.substring(0, 20)}...` 
+                                : post.title}
                             {selectedPostId === post.id && (
                                 <div className="relative">
                                     <button
                                         className="text-gray-600 hover:text-gray-800 px-2 py-1"
+                                        style={{
+                                            backgroundColor:　'#FFF0C8'
+                                        }}
                                         onClick={() => toggleMenu(post.id)}
                                     >
                                         ･･ {/* 半角中点を2つ */}

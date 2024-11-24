@@ -24,7 +24,7 @@ const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
                 type="text"
                 value={editableTitle}
                 onChange={handleTitleChange}
-                className="h-full text-2xl font-bold  focus:outline-none bg-[#383838] text-white p-2 rounded"
+                className="h-full text-2xl font-bold  focus:outline-none bg-[#ffffff] p-2 rounded"
             />
             <div className="flex space-x-2 justify-end">
                 <button 
