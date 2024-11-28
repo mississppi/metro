@@ -14,6 +14,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 // 初期化メソッド
 const init = () => {
+    console.log("init");
     db.serialize(() => {
         db.run(`CREATE TABLE IF NOT EXISTS posts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,6 +29,7 @@ const init = () => {
             }
         });
     });
+    console.log("init end");
 };
 
 module.exports = { db, init };
