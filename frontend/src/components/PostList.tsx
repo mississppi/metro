@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Post} from '../types/Post';
+import PostItem from './PostItem';
 
 const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost }: 
     { 
@@ -25,46 +26,16 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost }:
             >
                 <ul>
                     {posts.map(post => (
-                        <li 
-                            key={post.id} 
-                            className="flex h-full justify-between items-center p-2 cursor-pointer"
-                            style={{
-                                backgroundColor: selectedPostId === post.id ? '#FFF0C8' : 'transparent'
-                            }}
+                        <PostItem
+                            key={post.id}
+                            id={post.id}
+                            title={post.title}
+                            isSelected={selectedPostId === post.id}
+                            menuOpenId={menuOpenId}
                             onClick={() => onPostClick(post.id)}
-                        >
-                            {post.title.length > 20 
-                                ? `${post.title.substring(0, 20)}...` 
-                                : post.title}
-                            {selectedPostId === post.id && (
-                                <div className="relative">
-                                    <button
-                                        className="text-gray-600 hover:text-gray-800 px-2 py-1"
-                                        style={{
-                                            backgroundColor:　'#FFF0C8'
-                                        }}
-                                        onClick={() => toggleMenu(post.id)}
-                                    >
-                                        ･･ {/* 半角中点を2つ */}
-                                    </button>
-                                    {menuOpenId === post.id && (
-                                        <div className="absolute right-0 bg-white shadow-md border rounded-lg w-40">
-                                            <ul>
-                                                <li
-                                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                                                    onClick={() => {
-                                                        setMenuOpenId(null);
-                                                        onDeletePost();
-                                                    }}
-                                                >
-                                                    delete
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </li>
+                            toggleMenu={toggleMenu}
+                            onDeletePost={onDeletePost}
+                        />
                     ))}
                 </ul>
             </div>
