@@ -20,6 +20,7 @@ const init = () => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
             content TEXT,
+            post_status TEXT DEFAULT 'active', -- 新しいカラム
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )`, (err) => {
             if (err) {

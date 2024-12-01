@@ -20,7 +20,7 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
                 ･･ {/* 半角中点を2つ */}
             </button>
             {isOpen && (
-                <div className="absolute right-0 bg-white shadow-md border rounded-lg w-40">
+                <div className="absolute right-0 bg-white shadow-md border rounded-lg w-30">
                     <ul>
                         <li
                             className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"

@@ -23,7 +23,7 @@ app.post('/posts', (req, res) => {
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });
     }
-    const query = `INSERT INTO posts (title, content) VALUES (?, ?)`;
+    const query = `INSERT INTO posts (title, content, post_status) VALUES (?, ?, 'active')`;
     db.run(query, [title, content], function(err) {
         if (err) {
             console.error("Error creating post:", err.message);
@@ -53,7 +53,7 @@ app.put('/posts/:id', async (req, res) => {
 });
 
 app.get('/posts', (req, res) => {
-    const query = `SELECT * FROM posts ORDER BY created_at ASC`;
+    const query = `SELECT * FROM posts WHERE post_status='active' ORDER BY created_at ASC`;
     db.all(query, (err, rows) => {
         if (err) {
             console.error("Error retrieving posts:", err.message);
@@ -78,21 +78,22 @@ app.get('/posts/:id', (req, res) => {
     });
 });
 
-app.delete('/posts/:id', (req, res) => {
+app.delete('/posts/:id', async (req, res) => {
     const postId = req.params.id;
-    const query = `DELETE FROM posts WHERE id = ?`;
-    db.run(query, [postId], function (err) {
-        if (err) {
-            console.error("Error deleting post:", err.message);
-            return res.status(500).send({ message: 'Failed to delete post' });
+    try {
+        const result = await db.run(
+            `UPDATE posts SET post_status = 'deleted' WHERE id = ?`,
+            [postId]
+        );
+        if(result.changes === 0){
+            console.log('No rows updated.');
+            return; 
         }
-
-        if (this.changes === 0) {
-            return res.status(404).send({ message: 'Post not found' });
-        }
-
-        res.status(200).send({ message: 'Post deleted successfully' });
-    });
+        res.json({ message: 'Post updated successfully' });
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).json({ message: 'Failed to update post' });
+    }
 })
 
 // サーバー起動
