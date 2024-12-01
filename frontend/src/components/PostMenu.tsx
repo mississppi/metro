@@ -11,7 +11,7 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
             <button
                 className="text-gray-600 hover:text-gray-800 px-2 py-1"
                 style={{ 
-                    backgroundColor: '#FFF0C8',
+                    backgroundColor: '#3A3A3A',
                     height: '24px',
                     lineHeight: '1',
                 }}

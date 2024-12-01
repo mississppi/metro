@@ -17,7 +17,7 @@ const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDe
                 key={id} 
                 className="flex h-full justify-between items-center p-2 cursor-pointer"
                 style={{
-                    backgroundColor: isSelected ? '#FFF0C8' : 'transparent'
+                    backgroundColor: isSelected ? '#3A3A3A' : 'transparent'
                 }}
                 onClick={onClick}
             >

@@ -1,13 +1,13 @@
 body {
     /* background-color: #383838; */
-    background-color: #ffffff;
+    background-color: #2C2C2C;
     /* color: #E0E0E0; */
-    color: #4b5563;
+    color: #E0E0E0;
     font-family: 'Noto Sans JP', sans-serif;
 }
 
 .scrollable {
-    background-color: #ffffff;
+    background-color: #1E1E1E;
     /* background-color: #383838; */
     scrollbar-width: thin;
     scrollbar-color: #888 #383838;

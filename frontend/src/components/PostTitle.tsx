@@ -24,9 +24,9 @@ const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
                 type="text"
                 value={editableTitle}
                 onChange={handleTitleChange}
-                className="h-full text-2xl font-bold  focus:outline-none bg-[#ffffff] p-2 rounded"
+                className="h-full text-2xl font-bold  focus:outline-none bg-[#2C2C2C] p-2 rounded"
             />
-            <div className="flex space-x-2 justify-end">
+            {/* <div className="flex space-x-2 justify-end">
                 <button 
                     onClick={onNewPost} // ボタンのクリックで新規追加の処理を実行
                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
@@ -37,7 +37,7 @@ const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
                         className="w-5 h-5" 
                     />
                 </button>
-            </div>
+            </div> */}
         </div>
         
     );
