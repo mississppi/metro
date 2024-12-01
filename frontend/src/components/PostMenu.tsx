@@ -17,7 +17,11 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
                 }}
                 onClick={() => toggleMenu(postId)}
             >
-                ･･ {/* 半角中点を2つ */}
+            <span style={{
+                color:'#E0E0E0'
+                }}
+            >･･ {/* 半角中点を2つ */}
+            </span>
             </button>
             {isOpen && (
                 <div className="absolute right-0 bg-white shadow-md border rounded-lg w-30">
