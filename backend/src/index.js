@@ -23,7 +23,7 @@ app.post('/posts', (req, res) => {
     if (!title || !content) {
         return res.status(400).send({ message: 'Title and content are required' });
     }
-    const query = `INSERT INTO posts (title, content, post_status) VALUES (?, ?, 'active')`;
+    const query = `INSERT INTO posts (title, content, post_status, is_locked) VALUES (?, ?, 'active', 0)`;
     db.run(query, [title, content], function(err) {
         if (err) {
             console.error("Error creating post:", err.message);

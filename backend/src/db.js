@@ -20,7 +20,8 @@ const init = () => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
             content TEXT,
-            post_status TEXT DEFAULT 'active', -- 新しいカラム
+            post_status TEXT CHECK(post_status IN ('active', 'deleted')) DEFAULT 'active',
+            is_locked BOOLEAN DEFAULT 0,
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )`, (err) => {
             if (err) {
