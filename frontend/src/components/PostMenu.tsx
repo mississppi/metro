@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DeletePostModal from './Modal/DeletePostModal';
 
 const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
     postId: number;
@@ -39,30 +40,22 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
                         </li>
                     </ul>
 
+                    {/* 削除確認モーダル */}
                     {showDeleteModal && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                            <div className="bg-white p-6 rounded shadow-lg w-1/3">
-                                <h2 className="text-lg font-semibold mb-4">Confirm Deletion</h2>
-                                <p className="mb-6">
-                                    Are you sure you want to delete this post? This action cannot be undone.
-                                </p>
-                                <div className="flex justify-end space-x-4">
-                                    <button
-                                        className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-                                        onClick={closeDeleteModal}
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                        onClick={onDeletePost}
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <DeletePostModal 
+                            onClose={closeDeleteModal}
+                            onDelete={onDeletePost}
+                        />
                     )}
+                    {/* <DeletePostModal
+                        postId={postId}
+                        isOpen={showDeleteModal}
+                        onClose={closeDeleteModal}
+                        onDelete={(id) => {
+                            onDeletePost(id);
+                            toggleMenu(null); // メニューを閉じる
+                        }}
+                    /> */}
                 </div>
             )}
         </div>
