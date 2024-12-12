@@ -2,14 +2,14 @@
 import React, {useState} from 'react';
 import PostTitle from './PostTitle';
 import PostContent from './PostContent';
-import Modal from './Modal/Modal';
 
-const PostDetail = ({title, content,onNewPost,onDeletePost,onTitleChange,onContentChange}:
+const PostDetail = ({title, content,onNewPost,onDeletePost,onLockPost,onTitleChange,onContentChange}:
     {
         title: string;
         content: string;
         onNewPost: () => void;
         onDeletePost: () => void;
+        onLockPost: () => void;
         onTitleChange: (newTitle: string) => void;
         onContentChange: (newContent: string) => void;
     }
@@ -37,6 +37,7 @@ const PostDetail = ({title, content,onNewPost,onDeletePost,onTitleChange,onConte
                     onTitleChange={onTitleChange}
                     onNewPost={onNewPost}
                     onDeletePost={onDeletePost}
+                    onLockPost={onLockPost}
                 />
             </div>
             <div className="flex-grow h-full" style={{ flex: '8' }}>

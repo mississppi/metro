@@ -96,6 +96,45 @@ app.delete('/posts/:id', async (req, res) => {
     }
 })
 
+app.patch('/posts/:id', async(req, res) => {
+    console.log("db")
+    const { id } = req.params;
+    const updates = req.body;
+    console.log(updates);
+
+    if (!updates || Object.keys(updates).length === 0) {
+        return res.status(400).json({ message: 'No updates provided' });
+    }
+
+    const validFields = ['isLocked'];
+    const updateEntries = Object.entries(updates)
+        .filter(([key]) => validFields.includes(key));
+
+    if (updateEntries.length === 0) {
+        return res.status(400).json({ message: 'Invalid fields provided' });
+    }
+
+    const setClause = updateEntries.map(([key]) => `${key} = ?`).join(', ');
+    const values = updateEntries.map(([_, value]) => value);
+
+    console.log(setClause);
+    try{
+        const result = await db.run(
+            `UPDATE posts SET ${setClause} WHERE id = ?`,[...values, id]
+        );
+
+        if(result.changes === 0) {
+            return res.status(404).json({ message: 'Post not found or no changes made' });
+        }
+
+        res.json({message: 'Post updated successfully', updates});
+    } catch (error) {
+        console.error('Error updating post:', error);
+
+    }
+
+});
+
 // サーバー起動
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

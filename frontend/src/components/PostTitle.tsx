@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost}:{
+const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost, onLockPost}:{
     title:string;
     onTitleChange: (newTitle: string) => void;
     onNewPost: () => void;
     onDeletePost: () => void;
+    onLockPost: () => void;
 }) => {
     // 初期値としてpropsのcontentを設定
     const [editableTitle, setEditableTitle] = useState(title);

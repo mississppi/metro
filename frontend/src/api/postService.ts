@@ -100,4 +100,26 @@ const deletePost = async (postId: number) => {
     }
 }
 
-export { createNewPost, getPosts, getPostById, updatePost, deletePost };
+const lockPost = async (postId: number, updatedData: { is_locked?: boolean; }) => {
+    try {
+        const response = await fetch(`${API_URL}/posts/${postId}`, { 
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+        });
+        console.log(response);
+        
+        if (!response.ok) {
+            throw new Error('Failed to lock post');
+        }
+        const post = await getPostById(postId);
+        return post;
+    } catch (error) {
+        console.error(`Failed to lock post ${postId}`, error);
+        throw error; // 呼び出し元でエラーハンドリング可能にする
+    }
+}
+
+export { createNewPost, getPosts, getPostById, updatePost, deletePost, lockPost };

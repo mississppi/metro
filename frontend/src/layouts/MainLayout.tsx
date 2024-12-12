@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import PostList from '../components/PostList';
 import PostDetail from '../components/PostDetail';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
-import { createNewPost, getPostById, getPosts, updatePost, deletePost } from '../api/postService';
+import { createNewPost, getPostById, getPosts, updatePost, deletePost, lockPost } from '../api/postService';
 import { Post } from '../types/Post';
 
 const MainLayout: React.FC= () => {
@@ -73,6 +73,25 @@ const MainLayout: React.FC= () => {
         }
     };
 
+    const handleLockPost = async () => {
+        if(!selectedPost) {
+            console.error("No post selected for delete");
+            return;
+        }
+
+        try {
+            const updatedPost = await lockPost(selectedPost.id, {
+                is_locked: !selectedPost.is_locked,
+            });
+            setPosts((prevPosts) => 
+                prevPosts.map((post) => (post.id === updatedPost.id ? updatedPost : post))
+            )
+        } catch (error) {
+            console.error('Failed to locked post:', error);
+            alert('投稿のロック中にエラーが発生しました。');
+        }
+    }
+
     const handleSearch = () => {
         console.log("メモを検索しました！");
         // 検索処理をここに記述
@@ -81,11 +100,6 @@ const MainLayout: React.FC= () => {
     const handlePostClick = (id: number) => {
         const post = posts.find(p => p.id === id)
         setSelectedPost(post || null);
-    }
-
-    const handleDelete = (id: number) => {
-        console.log("delte start");
-        
     }
 
     const updateTitle = (newTitle: string) => {
@@ -106,6 +120,7 @@ const MainLayout: React.FC= () => {
                     onPostClick={handlePostClick}
                     selectedPostId={selectedPost?.id || null}
                     onDeletePost={handleDeletePost}
+                    onLockPost={handleLockPost}
                 />
             </div>
             <div className="w-3/4 p-4 h-full overflow-y-auto">  {/* 右カラム */}
@@ -115,6 +130,7 @@ const MainLayout: React.FC= () => {
                         content={selectedPost.content}
                         onNewPost={handleNewPost}
                         onDeletePost={handleDeletePost}
+                        onLockPost={handleLockPost}
                         onTitleChange={updateTitle}
                         onContentChange={updateContent}
                     />

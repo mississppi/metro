@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import DeletePostModal from './Modal/DeletePostModal';
+import LockModal from './Modal/LockModal';
 
-const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
+const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost, onLockPost}: {
     postId: number;
     isOpen: boolean;
     toggleMenu: (id:number) => void;
     onDeletePost: () => void;
+    onLockPost: () => void;
 }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showLockModal, setShowLockModal] = useState(false);
     const openDeleteModal = () => setShowDeleteModal(true);
     const closeDeleteModal = () => setShowDeleteModal(false);
+    const openLockModal = () => setShowLockModal(true);
+    const closeLockModal = () => setShowLockModal(false);
 
     return(
         <div className="relative">
@@ -33,12 +38,25 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
                     <ul>
                         <li
                             className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                            // onClick={onDeletePost}
+                            onClick={openLockModal}
+                        >
+                            lock
+                        </li>
+                        <li
+                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
                             onClick={openDeleteModal}
                         >
                             delete
                         </li>
                     </ul>
+
+                    {/* 削除確認モーダル */}
+                    {showLockModal && (
+                        <LockModal 
+                            onClose={closeLockModal}
+                            onLock={onLockPost}
+                        />
+                    )}
 
                     {/* 削除確認モーダル */}
                     {showDeleteModal && (
@@ -47,15 +65,6 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
                             onDelete={onDeletePost}
                         />
                     )}
-                    {/* <DeletePostModal
-                        postId={postId}
-                        isOpen={showDeleteModal}
-                        onClose={closeDeleteModal}
-                        onDelete={(id) => {
-                            onDeletePost(id);
-                            toggleMenu(null); // メニューを閉じる
-                        }}
-                    /> */}
                 </div>
             )}
         </div>
