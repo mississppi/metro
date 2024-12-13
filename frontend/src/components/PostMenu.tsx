@@ -53,8 +53,8 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost, onLockPost}: {
                     {/* 削除確認モーダル */}
                     {showLockModal && (
                         <LockModal 
-                            onClose={closeLockModal}
                             onLock={onLockPost}
+                            onClose={closeLockModal}
                         />
                     )}
 

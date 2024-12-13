@@ -106,7 +106,7 @@ app.patch('/posts/:id', async(req, res) => {
         return res.status(400).json({ message: 'No updates provided' });
     }
 
-    const validFields = ['isLocked'];
+    const validFields = ['is_locked'];
     const updateEntries = Object.entries(updates)
         .filter(([key]) => validFields.includes(key));
 
