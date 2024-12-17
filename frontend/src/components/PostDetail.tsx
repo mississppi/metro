@@ -14,20 +14,6 @@ const PostDetail = ({title, content,onNewPost,onDeletePost,onLockPost,onTitleCha
         onContentChange: (newContent: string) => void;
     }
 ) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleDeletePost = () => {
-        setIsModalOpen(true);
-    }
-
-    const handleConfirmDelete = () => {
-        // onDeletePost(selectedPost.id);
-        setIsModalOpen(false);
-    }
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    }
     
     return (
         <div className="flex flex-col h-full">
