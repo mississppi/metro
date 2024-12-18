@@ -128,6 +128,7 @@ const MainLayout: React.FC= () => {
                     <PostDetail 
                         title={selectedPost.title}
                         content={selectedPost.content}
+                        is_locked={selectedPost.is_locked}
                         onNewPost={handleNewPost}
                         onDeletePost={handleDeletePost}
                         onLockPost={handleLockPost}

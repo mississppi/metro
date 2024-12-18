@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const PostContent = ({ content, onContentChange }: {
+const PostContent = ({ content, is_locked, onContentChange }: {
     content: string;
+    is_locked: boolean;
     onContentChange: (newContent: string) => void
 }) => {
     // 初期値としてpropsのcontentを設定
