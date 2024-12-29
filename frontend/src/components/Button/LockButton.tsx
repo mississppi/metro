@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import LockModal from '../Modal/LockModal';
 import UnlockModal from '../Modal/UnLockModal';
 
@@ -6,8 +6,7 @@ const LockButton = ({is_locked, onLockPost}: {
   is_locked: boolean;
   onLockPost:() => void;
 }) => {
-  const menuRef = useRef<HTMLDivElement>(null);
-  
+
   const iconPath = is_locked ? '/icons/lock.svg' : '/icons/unlock.svg'; // アンロック中のアイコン
   const [showModal, setShowModal] = useState(false);
   

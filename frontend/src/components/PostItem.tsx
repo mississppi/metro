@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {Post} from '../types/Post';
 import PostMenu from './PostMenu';
 
 const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDeletePost }:{
