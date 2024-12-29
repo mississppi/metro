@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DeletePostModal from './Modal/DeletePostModal';
-import LockModal from './Modal/LockModal';
 
 const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
     postId: number;
@@ -9,13 +8,10 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
     onDeletePost: () => void;
 }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showLockModal, setShowLockModal] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     
     const openDeleteModal = () => setShowDeleteModal(true);
     const closeDeleteModal = () => setShowDeleteModal(false);
-    const openLockModal = () => setShowLockModal(true);
-    const closeLockModal = () => setShowLockModal(false);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
