@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import LockButton from './Button/LockButton';
 
-const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost, onLockPost}:{
+const PostTitle = ({ title, is_locked, onTitleChange, onDeletePost, onLockPost}:{
     title:string;
+    is_locked:boolean;
     onTitleChange: (newTitle: string) => void;
-    onNewPost: () => void;
     onDeletePost: () => void;
     onLockPost: () => void;
 }) => {
@@ -27,20 +28,11 @@ const PostTitle = ({ title, onTitleChange, onNewPost,onDeletePost, onLockPost}:{
                 onChange={handleTitleChange}
                 className="h-full text-2xl font-bold  focus:outline-none bg-[#2C2C2C] p-2 rounded"
             />
-            {/* <div className="flex space-x-2 justify-end">
-                <button 
-                    onClick={onNewPost} // ボタンのクリックで新規追加の処理を実行
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
-                    >
-                    <img 
-                        src="/icons/plus.svg" 
-                        alt="新規追加" 
-                        className="w-5 h-5" 
-                    />
-                </button>
-            </div> */}
+            <LockButton 
+                is_locked={is_locked}
+                onLockPost={onLockPost}
+            />
         </div>
-        
     );
 };
 

@@ -86,6 +86,7 @@ const MainLayout: React.FC= () => {
             setPosts((prevPosts) => 
                 prevPosts.map((post) => (post.id === updatedPost.id ? updatedPost : post))
             )
+            setSelectedPost(updatedPost);
         } catch (error) {
             console.error('Failed to locked post:', error);
             alert('投稿のロック中にエラーが発生しました。');
@@ -129,7 +130,6 @@ const MainLayout: React.FC= () => {
                         title={selectedPost.title}
                         content={selectedPost.content}
                         is_locked={selectedPost.is_locked}
-                        onNewPost={handleNewPost}
                         onDeletePost={handleDeletePost}
                         onLockPost={handleLockPost}
                         onTitleChange={updateTitle}

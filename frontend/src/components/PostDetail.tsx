@@ -3,12 +3,11 @@ import React, {useState} from 'react';
 import PostTitle from './PostTitle';
 import PostContent from './PostContent';
 
-const PostDetail = ({title, content,is_locked,onNewPost,onDeletePost,onLockPost,onTitleChange,onContentChange}:
+const PostDetail = ({title, content,is_locked,onDeletePost,onLockPost,onTitleChange,onContentChange}:
     {
         title: string;
         content: string;
         is_locked: boolean;
-        onNewPost: () => void;
         onDeletePost: () => void;
         onLockPost: () => void;
         onTitleChange: (newTitle: string) => void;
@@ -21,8 +20,8 @@ const PostDetail = ({title, content,is_locked,onNewPost,onDeletePost,onLockPost,
             <div className="flex-grow-0 h-full flex-shrink-0 p-4" style={{ flex: '2' }}>
                 <PostTitle 
                     title={title}
+                    is_locked={is_locked}
                     onTitleChange={onTitleChange}
-                    onNewPost={onNewPost}
                     onDeletePost={onDeletePost}
                     onLockPost={onLockPost}
                 />
