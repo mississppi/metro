@@ -33,7 +33,8 @@ const PostContent = ({ content, is_locked, onContentChange }: {
         const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
         const isCopyCommand = (isMac && e.metaKey && e.key === "c") || (!isMac && e.ctrlKey && e.key === "c");
         const isAddCommand = (isMac && e.metaKey && e.key === "n") || (!isMac && e.ctrlKey && e.key === "n");
-        if (!isCopyCommand || !isAddCommand) {
+        const isArrowKey = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key);
+        if (!isCopyCommand && !isAddCommand && !isArrowKey) {
             e.preventDefault();
         }
     }
