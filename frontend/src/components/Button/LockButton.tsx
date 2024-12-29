@@ -31,11 +31,16 @@ const LockButton = ({is_locked, onLockPost}: {
     };
   }, [showModal]);
 
+  const buttonStyle = is_locked 
+  ? 'bg-gray-800 hover:bg-gray-700'
+  : 'bg-green-500 hover:bg-green-400 text-gray-800';
+
     return (
       <div>
         <button
         onClick={openModal}
-        className="flex items-center justify-center p-2 bg-gray-800 rounded hover:bg-gray-700 transition"
+        className={`flex items-center justify-center p-2 rounded transition ${buttonStyle}`}
+
         >
         <img src={iconPath} className="w-6 h-6" />
         </button>
@@ -43,9 +48,9 @@ const LockButton = ({is_locked, onLockPost}: {
         {/* lock確認モーダル */}
         {showModal && (
           is_locked ? (
-            <LockModal onLock={onLockPost} onClose={closeModal}/>
-          ): (
             <UnlockModal onUnlock={onLockPost} onClose={closeModal}/>
+          ): (
+            <LockModal onLock={onLockPost} onClose={closeModal}/>
           )
         )}
       </div>
