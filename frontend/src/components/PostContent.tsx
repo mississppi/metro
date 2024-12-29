@@ -44,7 +44,7 @@ const PostContent = ({ content, is_locked, onContentChange }: {
                 onChange={handleUnlockedContentChange}
                 onKeyDown={is_locked ? handleKeyDown: undefined}
                 className="w-full h-[80vh]  bg-[#2C2C2C] resize-none focus:outline-none"
-                placeholder='ここにメモの内容'
+                placeholder='ここにメモを入力します'
             />
         </div>
     );
