@@ -121,7 +121,6 @@ const MainLayout: React.FC= () => {
                     onPostClick={handlePostClick}
                     selectedPostId={selectedPost?.id || null}
                     onDeletePost={handleDeletePost}
-                    onLockPost={handleLockPost}
                 />
             </div>
             <div className="w-3/4 p-4 h-full overflow-y-auto">  {/* 右カラム */}

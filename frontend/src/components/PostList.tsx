@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import {Post} from '../types/Post';
 import PostItem from './PostItem';
 
-const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost, onLockPost }: 
+const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost }: 
     { 
         posts: Post[], 
         onPostClick: (id: number) => void,
         selectedPostId: number | null,
         onDeletePost: () => void;
-        onLockPost: () => void;
     }
 ) => {
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null);
@@ -36,7 +35,6 @@ const PostList = ({ posts, onPostClick, selectedPostId, onDeletePost, onLockPost
                             onClick={() => onPostClick(post.id)}
                             toggleMenu={toggleMenu}
                             onDeletePost={onDeletePost}
-                            onLockPost={onLockPost}
                         />
                     ))}
                 </ul>

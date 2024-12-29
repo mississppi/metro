@@ -2,12 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import DeletePostModal from './Modal/DeletePostModal';
 import LockModal from './Modal/LockModal';
 
-const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost, onLockPost}: {
+const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost}: {
     postId: number;
     isOpen: boolean;
     toggleMenu: (id:number) => void;
     onDeletePost: () => void;
-    onLockPost: () => void;
 }) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showLockModal, setShowLockModal] = useState(false);
@@ -66,25 +65,11 @@ const PostMenu = ({postId, isOpen, toggleMenu, onDeletePost, onLockPost}: {
                     <ul>
                         <li
                             className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                            onClick={openLockModal}
-                        >
-                            lock
-                        </li>
-                        <li
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
                             onClick={openDeleteModal}
                         >
                             delete
                         </li>
                     </ul>
-
-                    {/* 削除確認モーダル */}
-                    {showLockModal && (
-                        <LockModal 
-                            onLock={onLockPost}
-                            onClose={closeLockModal}
-                        />
-                    )}
 
                     {/* 削除確認モーダル */}
                     {showDeleteModal && (

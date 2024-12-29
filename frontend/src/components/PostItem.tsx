@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Post} from '../types/Post';
 import PostMenu from './PostMenu';
 
-const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDeletePost, onLockPost }:{
+const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDeletePost }:{
     id: number;
     title: string; 
     isSelected: boolean;
@@ -10,7 +10,6 @@ const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDe
     onClick: () => void;
     toggleMenu: (id: number) => void;
     onDeletePost: () => void;
-    onLockPost: () => void;
 }) => {
     return(
         <>
@@ -29,7 +28,6 @@ const PostItem = ({ id, title, isSelected, menuOpenId, onClick, toggleMenu, onDe
                         isOpen={menuOpenId === id}
                         toggleMenu={toggleMenu}
                         onDeletePost={onDeletePost}
-                        onLockPost={onLockPost}
                     />
                 )}
             </li>
